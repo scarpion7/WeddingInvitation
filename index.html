@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="uz" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shohruh & Samiyya - To'y Taklifnomasi</title>
+
+    <!-- Chosen Palette: Classic Wedding (Cream, Gold, Soft Pink) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #FDFBF8;
+            color: #4a4a4a;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .font-heading {
+            font-family: 'Playfair Display', serif;
+        }
+        .font-script {
+            font-family: 'Great Vibes', cursive;
+        }
+        .section-bg {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+        .section-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.4); 
+            z-index: 1;
+        }
+        .content-container {
+            position: relative;
+            z-index: 2;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .glass-effect-dark {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Navbar yangilangan stil */
+        #navbar {
+            background-color: rgba(192, 160, 128, 0.95); /* Yumshoq jigarrang rang */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        #navbar nav {
+            color: #fff; /* Oq rangdagi matn */
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+            color: #fff;
+            font-weight: 600; /* Kuchliroq shrift */
+            font-family: 'Montserrat', sans-serif; /* Aniq shrift */
+            letter-spacing: 0.5px; /* Harflar orasini kengaytirish */
+        }
+        .nav-link.active::after,
+        .nav-link:hover::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #fff;
+            bottom: -5px;
+            left: 0;
+        }
+        
+        /* Custom Section Heading Decoration (Flower/Leaf-like lines) */
+        .decorated-heading {
+            display: inline-block;
+            position: relative;
+            padding: 0 2rem;
+        }
+
+        .decorated-heading::before,
+        .decorated-heading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 50px; /* Length of the line/branch */
+            height: 1px;
+            background-color: currentColor; /* Inherit color from text */
+            opacity: 0.7;
+            transform: translateY(-50%);
+            transition: width 1s ease-out; /* Added transition for AOS */
+        }
+        
+        /* LEFT Line (Before) */
+        .decorated-heading::before {
+            left: 100%;
+            margin-left: 1rem;
+        }
+        
+        /* RIGHT Line (After) */
+        .decorated-heading::after {
+            right: 100%;
+            margin-right: 1rem;
+        }
+        
+        /* AOS class to shrink the line on load, then expand it */
+        .decorated-heading.aos-init:not(.aos-animate)::before,
+        .decorated-heading.aos-init:not(.aos-animate)::after {
+            width: 0; 
+        }
+
+        /* Timeline Styles */
+        .timeline-container-custom {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+        .timeline-line {
+            position: absolute;
+            width: 4px;
+            background-color: #C0A080;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            z-index: 1;
+        }
+        .timeline-star {
+            position: absolute;
+            left: 50%;
+            top: 0; 
+            transform: translateX(-50%) translateY(0);
+            z-index: 3;
+            transition: transform 0.1s linear; 
+        }
+        .timeline-item-custom {
+            padding: 10px 0;
+            position: relative;
+            z-index: 2;
+            width: 100%; 
+            margin-bottom: 3rem;
+        }
+        
+        /* Mobile: Simple left-aligned timeline */
+        .timeline-item-custom::before {
+             content: '';
+            position: absolute;
+            left: 10px;
+            top: 25px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: #FDFBF8;
+            border: 3px solid #C0A080;
+            z-index: 4;
+        }
+        .timeline-content-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-left: 30px; 
+        }
+
+        /* Desktop/Tablet: Alternating left/right layout */
+        @media (min-width: 768px) {
+            .timeline-item-custom {
+                width: 45%; 
+            }
+            /* Left side items */
+            .timeline-item-custom:nth-child(odd) {
+                text-align: right;
+                left: 0;
+                margin-left: 0;
+                margin-right: 55%;
+            }
+            .timeline-item-custom:nth-child(odd) .timeline-content-card {
+                 margin-left: 0;
+            }
+            .timeline-item-custom:nth-child(odd)::before {
+                right: -30px; 
+                left: auto;
+            }
+
+            /* Right side items */
+            .timeline-item-custom:nth-child(even) {
+                text-align: left;
+                left: 55%;
+                margin-left: -5%; 
+            }
+            .timeline-item-custom:nth-child(even) .timeline-content-card {
+                 margin-left: 0;
+            }
+            .timeline-item-custom:nth-child(even)::before {
+                left: -30px; 
+                right: auto;
+            }
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .gallery-image:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Taklifnoma uchun gullar effekti */
+        .corner-flowers {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .corner-flower {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 1.5s ease-out;
+        }
+        
+        .corner-flower.top-left {
+            top: -30px;
+            left: -30px;
+            transform-origin: top left;
+        }
+        
+        .corner-flower.top-right {
+            top: -30px;
+            right: -30px;
+            transform-origin: top right;
+        }
+        
+        .corner-flower.visible {
+            opacity: 0.8;
+            transform: scale(1);
+        }
+        
+        /* Taklifnoma tugmalari */
+        .attendance-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+        
+        .attendance-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .attendance-btn.active {
+            background: rgba(255, 255, 255, 0.4);
+            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Suzuvchi elementlar effekti */
+        .floating-element {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1; /* Glass effect orqasida bo'lishi uchun */
+            opacity: 0;
+            animation: floating linear infinite;
+        }
+        
+        @keyframes floating {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(100px, 100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Yulduz animatsiyasi */
+        .star {
+            width: 20px;
+            height: 20px;
+            background: gold;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
+        
+        /* Yurak animatsiyasi */
+        .heart {
+            color: #ff6b6b;
+            font-size: 20px;
+        }
+        
+        /* Taymer dizayni */
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .countdown-item {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 15px 10px;
+            min-width: 80px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .countdown-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .countdown-label {
+            display: block;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Musiqa boshqaruvchi */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(192, 160, 128, 0.9);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .music-player:hover {
+            transform: scale(1.1);
+            background: rgba(192, 160, 128, 1);
+        }
+        
+        /* Footer stil */
+        .footer {
+            background: linear-gradient(to right, #C0A080, #D4BFA0);
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer h4 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .footer a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer a:hover {
+            color: #FDFBF8;
+            text-decoration: underline;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-3px);
+        }
+        
+        /* Bo'limlarga mos animatsiyalar */
+        .section-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0; /* Kontentdan keyin bo'lishi uchun */
+            overflow: hidden;
+        }
+        
+        /* Naqshinkor o'simlik effekti */
+        .ornamental-plant {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 150px;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .plant-element {
+            position: absolute;
+            width: 4px;
+            height: 0;
+            background: linear-gradient(to bottom, #C0A080, #8B7355);
+            border-radius: 2px;
+            animation: growPlant 2s forwards;
+        }
+        
+        .plant-leaf {
+            position: absolute;
+            width: 15px;
+            height: 8px;
+            background: #8B7355;
+            border-radius: 50%;
+            transform-origin: left center;
+        }
+        
+        .plant-flower {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, #ffb6c1, #ff69b4);
+            border-radius: 50%;
+            opacity: 0;
+            animation: bloomFlower 1s 2s forwards;
+        }
+        
+        @keyframes growPlant {
+            to {
+                height: 120px;
+            }
+        }
+        
+        @keyframes bloomFlower {
+            to {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+    </style>
+</head>
+<body class="leading-relaxed">
+
+    <!-- Musiqa boshqaruvchi -->
+    <div class="music-player" id="musicToggle">
+        <i class="fas fa-music fa-lg"></i>
+        <audio id="bgMusic" loop>
+            <source src="music/perfect.mp3" type="audio/mp3">
+        </audio>
+    </div>
+
+    <!-- Suzuvchi elementlar konteyneri -->
+    <div id="floating-elements-container"></div>
+
+    <!-- Header -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="font-script text-3xl">S & S</a>
+            <div class="hidden md:flex space-x-8 items-center tracking-wider uppercase text-sm">
+                <a href="#home" class="nav-link active">Bosh Sahifa</a>
+                <a href="#about" class="nav-link">Biz Haqimizda</a>
+                <a href="#story" class="nav-link">Bizning Hikoya</a>
+                <a href="#invitation" class="nav-link">Taklifnoma</a>
+                <a href="#gallery" class="nav-link">Galereya</a>
+                <a href="#location" class="nav-link">Manzil</a>
+                <a href="#wishes" class="nav-link">Tabriklar</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white/90 text-gray-800">
+             <a href="#home" class="block py-2 px-4 text-sm hover:bg-gray-200">Bosh Sahifa</a>
+             <a href="#about" class="block py-2 px-4 text-sm hover:bg-gray-200">Biz Haqimizda</a>
+             <a href="#story" class="block py-2 px-4 text-sm hover:bg-gray-200">Bizning Hikoya</a>
+             <a href="#invitation" class="block py-2 px-4 text-sm hover:bg-gray-200">Taklifnoma</a>
+             <a href="#gallery" class="block py-2 px-4 text-sm hover:bg-gray-200">Galereya</a>
+             <a href="#location" class="block py-2 px-4 text-sm hover:bg-gray-200">Manzil</a>
+             <a href="#wishes" class="block py-2 px-4 text-sm hover:bg-gray-200">Tabriklar</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="h-screen flex items-center justify-center text-white text-center section-bg relative" style="background-image: url('https://images.pexels.com/photos/169198/pexels-photo-169198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');">
+            <div class="section-animation"></div>
+            <div class="content-container px-4">
+                <p class="mb-4 tracking-widest" data-aos="zoom-in" data-aos-duration="1200">BIZ TURMUSH QURMOQDAMIZ</p>
+                <h1 class="font-script text-7xl md:text-9xl mb-4" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="1200">Shohruh & Samiyya</h1>
+                <p class="font-heading text-2xl mb-8" data-aos="zoom-in" data-aos-delay="600" data-aos-duration="1200">25 | 10 | 2025</p>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="py-20 lg:py-32 section-bg relative" style="background-image: url('https://merciebstudio.com/wp-content/uploads/sites/32170/2023/10/Max-Hannah_0072-1024x683.jpg');">
+            <div class="section-animation"></div>
+            <div class="container mx-auto px-6 content-container">
+                 <div class="text-center text-white mb-16">
+                     <div class="decorated-heading text-white mb-4" data-aos="fade-up" data-aos-duration="1200">
+                        <h2 class="font-script text-6xl">Biz Haqimizda</h2>
+                    </div>
+                    <p class="text-lg" data-aos="fade-up" data-aos-delay="300">Baxtga yetaklagan sevgi qissasi</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 text-white items-center">
+                    <div class="text-center glass-effect rounded-lg p-8" data-aos="slide-right" data-aos-delay="500">
+                        <img src="https://images.pexels.com/photos/3779760/pexels-photo-3779760.jpeg?auto=compress&cs=tinysrgb&w=600" class="w-40 h-40 rounded-full mx-auto mb-6 border-4 border-white/50 object-cover" alt="Shohruhning surati" data-aos="flip-up" data-aos-delay="800">
+                        <h3 class="font-script text-4xl mb-2">Shohruh</h3>
+                        <p class="font-sans">"Hayotimdagi eng yaxshi qaror - bu unga "ha" deyishini so'rash edi. U mening dunyoyimni yoritdi va har bir kunimni mazmunga to'ldirdi. U bilan birga quradigan kelajagimizni intiqlik bilan kutaman."</p>
+                    </div>
+                    <div class="text-center glass-effect rounded-lg p-8" data-aos="slide-left" data-aos-delay="500">
+                        <img src="https://images.pexels.com/photos/3290236/pexels-photo-3290236.jpeg?auto=compress&cs=tinysrgb&w=600" class="w-40 h-40 rounded-full mx-auto mb-6 border-4 border-white/50 object-cover" alt="Samiyyaning surati" data-aos="flip-up" data-aos-delay="800">
+                        <h3 class="font-script text-4xl mb-2">Samiyya</h3>
+                        <p class="font-sans">"Uning yonida men o'zimning eng yaxshi qirralarimni ochdim. Uning mehri, qo'llab-quvvatlashi va samimiyligi men uchun eng katta sovg'a. Bir umr u bilan baxtli yashashga tayyorman."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Love Story Section -->
+        <section id="story" class="py-20 lg:py-32 section-bg relative" style="background-image: url('https://brittanyfordphotography.com/wp-content/uploads/2024/05/Arbor-Midtown-Rochester-New-York-Wedding-Brittany-Ford-Photography-styledshoot-blog-18-scaled.jpg');">
+            <div class="section-animation"></div>
+            <div class="container mx-auto px-6 content-container text-white">
+                <div class="text-center mb-16">
+                     <div class="decorated-heading text-white mb-4" data-aos="fade-up" data-aos-duration="1200">
+                        <h2 class="font-script text-6xl">Bizning Hikoya</h2>
+                    </div>
+                    <p class="text-lg" data-aos="fade-up" data-aos-delay="300">Muhabbatimizning unutilmas onlari</p>
+                </div>
+                
+                <div class="timeline-container-custom">
+                    <!-- Central Line -->
+                    <div class="hidden md:block timeline-line" data-aos="zoom-in" data-aos-delay="500"></div>
+                    
+                    <!-- Yulduz Icon (Scroll position will be updated by JS) -->
+                    <div id="timeline-star" class="hidden md:block timeline-star text-4xl text-yellow-300">
+                        <i class="fas fa-star animate-pulse"></i>
+                    </div>
+                    
+                    <div class="flex flex-col">
+                        <!-- 1. Ilk Uchrashuv (Odd - Mobile: Left | Desktop: Left) -->
+                        <div class="timeline-item-custom" data-aos="fade-right" data-aos-delay="600">
+                            <div class="timeline-content-card">
+                                <h4 class="font-heading text-xl font-semibold mb-1">Ilk Uchrashuv</h4>
+                                <p class="text-sm text-white/80 mb-2">2021-yil bahori</p>
+                                <p class="font-sans">Qahvaxonadagi tasodifiy uchrashuv bizning hikoyamizga debocha bo'ldi. O'shanda ikkimiz ham bu tanishuv hayotimizni o'zgartirib yuborishini bilmagan edik.</p>
+                            </div>
+                        </div>
+
+                        <!-- 2. Birinchi Sayohat (Even - Mobile: Left | Desktop: Right) -->
+                        <div class="timeline-item-custom md:ml-auto" data-aos="fade-left" data-aos-delay="700">
+                            <div class="timeline-content-card">
+                                <h4 class="font-heading text-xl font-semibold mb-1">Birinchi Sayohat</h4>
+                                 <p class="text-sm text-white/80 mb-2">2022-yil yozi</p>
+                                <p class="font-sans">Tog'lar bag'riga qilgan ilk sayohatimiz bir-birimizni yanada yaqinroq bilishimizga yordam berdi. Tabiat go'zalligi bizning tuyg'ularimizga o'zgacha jilo bag'ishladi.</p>
+                            </div>
+                        </div>
+
+                        <!-- 3. Taklif (Odd - Mobile: Left | Desktop: Left) -->
+                        <div class="timeline-item-custom" data-aos="fade-right" data-aos-delay="800">
+                            <div class="timeline-content-card">
+                                <h4 class="font-heading text-xl font-semibold mb-1">Taklif</h4>
+                                 <p class="text-sm text-white/80 mb-2">2024-yil kuzi</p>
+                                <p class="font-sans">Quyosh botayotgan dengiz sohilida, u men kutmagan, ammo bir umr orzu qilgan savolni berdi. Bu hayotimdagi eng baxtli "Ha!" edi.</p>
+                            </div>
+                        </div>
+
+                        <!-- 4. Yangi Hayot (Even - Mobile: Left | Desktop: Right) -->
+                        <div class="timeline-item-custom md:ml-auto" data-aos="fade-left" data-aos-delay="900">
+                            <div class="timeline-content-card">
+                                <h4 class="font-heading text-xl font-semibold mb-1">Yangi Hayot Ostonasida</h4>
+                                 <p class="text-sm text-white/80 mb-2">2025-yil oktyabr</p>
+                                <p class="font-sans">Va mana, biz birgalikdagi hayotimizning yangi sahifasini ochish arafasidamiz. Bu baxtli kunimizda sizlarni yonimizda ko'rishdan mamnun bo'lamiz!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Invitation Section -->
+        <section id="invitation" class="py-20 lg:py-32 section-bg relative" style="background-image: url('https://www.theweddingsecret.co.uk/img/uploads/pageimage/67c6ca3649ea8_minisite.jpg.webp');">
+            <div class="section-animation"></div>
+            <!-- Naqshinkor o'simlik effekti -->
+            <div class="ornamental-plant">
+                <div class="plant-element" style="left: 20%;"></div>
+                <div class="plant-element" style="left: 40%;"></div>
+                <div class="plant-element" style="left: 60%;"></div>
+                <div class="plant-element" style="left: 80%;"></div>
+            </div>
+            
+            <div class="container mx-auto px-6 content-container text-white text-center relative">
+                 <!-- Gul effekti -->
+                 <div class="corner-flowers">
+                     <div class="corner-flower top-left">
+                         <img src="https://www.clipartmax.com/png/middle/26-265549_flower-png-image-flower-png-transparent-background.png" alt="Gul" style="width: 100%; height: 100%; object-fit: contain;">
+                     </div>
+                     <div class="corner-flower top-right">
+                         <img src="https://www.clipartmax.com/png/middle/26-265549_flower-png-image-flower-png-transparent-background.png" alt="Gul" style="width: 100%; height: 100%; object-fit: contain;">
+                     </div>
+                 </div>
+                 
+                 <div class="max-w-3xl mx-auto glass-effect rounded-lg p-8 md:p-12" data-aos="zoom-in" data-aos-duration="1500">
+                     <div class="decorated-heading text-white mb-4" data-aos="fade-down" data-aos-delay="300">
+                        <h2 class="font-script text-6xl">Taklifnoma</h2>
+                    </div>
+                    <p class="text-lg mb-8" data-aos="fade-up" data-aos-delay="600">Aziz va qadrli do'stlar, qarindoshlar!</p>
+                    <p class="mb-4" data-aos="fade-up" data-aos-delay="700">Sizlarni hayotimizdagi eng baxtli, quvonchli va unutilmas kunimiz – nikoh oqshomimizga bag'ishlangan to'y dasturxonimizga taklif etamiz.</p>
+                    <p class="mb-8" data-aos="fade-up" data-aos-delay="800">Ushbu quvonchli kunimizda biz bilan birga bo'lib, baxtli onlarimizga guvoh bo'lishingiz biz uchun katta sharafdir.</p>
+                    <p class="font-heading text-xl font-semibold" data-aos="fade-up" data-aos-delay="900">Hurmat va ehtirom ila,</p>
+                    <p class="font-script text-4xl mt-2" data-aos="zoom-in" data-aos-delay="1000">Shohruhva Samiyya</p>
+                    <hr class="my-8 border-white/30" data-aos="zoom-in" data-aos-delay="1100">
+                    
+                    <div class="mt-8" data-aos="fade-up" data-aos-delay="1200">
+                        <h3 class="font-heading text-2xl mb-4">Tashrifingizni tasdiqlang</h3>
+                        <div class="flex justify-center mt-4">
+                            <button class="attendance-btn" data-response="yes">Kelaman</button>
+                            <button class="attendance-btn" data-response="no">Kela olmayman</button>
+                        </div>
+                        <p id="rsvp-response" class="mt-4 text-lg"></p>
+                    </div>
+                 </div>
+            </div>
+        </section>
+        
+        <!-- Gallery Section -->
+        <section id="gallery" 
+    class="py-20 lg:py-32 relative" 
+    style="
+        background-image: url('https://imagesbykevin.com.au/wp-content/uploads/2019/09/chiswick-at-the-gallery-wedding-9-1024x683.jpg');
+        background-size: cover;       /* to'liq ekranga joylashadi */
+        background-position: center;  /* markazdan turadi */
+        background-repeat: no-repeat; /* takrorlanmaydi */
+        min-height: 100vh;            /* kamida butun oynani egallaydi */
+    "
+>
+    <!-- Qoraytiruvchi overlay (agar matn o'qilishi qiyin bo'lsa) -->
+    <div class="absolute inset-0 bg-black/40"></div>
+
+    <div class="section-animation"></div>
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="text-center mb-16">
+            <div class="decorated-heading text-white mb-4" data-aos="fade-up">
+                <h2 class="font-script text-6xl">Galereya</h2>
+            </div>
+            <p class="text-lg text-gray-200" data-aos="fade-up" data-aos-delay="300">
+                Eng yaxshi va unutilmas suratlarimiz
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            <!-- Images with staggered animations -->
+            <div data-aos="zoom-in-up" data-aos-delay="0">
+                <img src="https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Nikoh to'yi rasmi 1" class="gallery-image">
+            </div>
+            <div data-aos="zoom-in-up" data-aos-delay="100">
+                <img src="https://images.pexels.com/photos/1031317/pexels-photo-1031317.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Nikoh to'yi rasmi 2" class="gallery-image">
+            </div>
+            <div data-aos="zoom-in-up" data-aos-delay="200">
+                <img src="https://images.pexels.com/photos/3299718/pexels-photo-3299718.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Nikoh to'yi rasmi 3" class="gallery-image">
+            </div>
+            <div data-aos="zoom-in-up" data-aos-delay="300">
+                <img src="https://images.pexels.com/photos/208852/pexels-photo-208852.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Nikoh to'yi rasmi 4" class="gallery-image">
+            </div>
+            <div data-aos="zoom-in-up" data-aos-delay="400">
+                <img src="https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Nikoh to'yi rasmi 5" class="gallery-image">
+            </div>
+            <div data-aos="zoom-in-up" data-aos-delay="500">
+                <img src="https://images.pexels.com/photos/392018/pexels-photo-392018.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Nikoh to'yi rasmi 6" class="gallery-image">
+            </div>
+            <div data-aos="zoom-in-up" data-aos-delay="600">
+                <img src="https://images.pexels.com/photos/3312937/pexels-photo-3312937.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Nikoh to'yi rasmi 7" class="gallery-image">
+            </div>
+            <div data-aos="zoom-in-up" data-aos-delay="700">
+                <img src="https://images.pexels.com/photos/265851/pexels-photo-265851.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Nikoh to'yi rasmi 8" class="gallery-image">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+        <!-- Location Section -->
+        <section id="location" class="py-20 lg:py-32 section-bg text-white relative" style="background-image: url('https://media-api.xogrp.com/images/a5ab8a8f-071d-49b8-a9d0-46e22c1a9ab3?auto=format&fit=max&w=1200&q=70');">
+            <div class="section-animation"></div>
+            <div class="container mx-auto px-6 content-container">
+                <div class="text-center mb-16 glass-effect-dark p-6 rounded-lg" data-aos="fade-up" data-aos-duration="1200">
+                    <div class="decorated-heading text-white mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <h2 class="font-script text-6xl">To'y Marosimi</h2>
+                    </div>
+                    <p class="text-lg text-white/80" data-aos="fade-up" data-aos-delay="500">Sizni intiqlik bilan kutamiz</p>
+                </div>
+
+                <!-- Taymer qo'shildi -->
+                <div class="max-w-xl mx-auto mb-12 p-6 rounded-lg glass-effect-dark shadow-xl" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="font-heading text-2xl font-semibold mb-4 text-center">To'ygacha qolgan vaqt:</h3>
+                    <div id="countdown-timer" class="countdown-timer">
+                        <!-- Taymer JavaScript orqali to'ldiriladi -->
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 text-center max-w-4xl mx-auto mb-8">
+                    <div data-aos="slide-right" data-aos-delay="100" class="glass-effect-dark p-6 rounded-lg">
+                        <h3 class="font-heading text-3xl font-semibold mb-4">Qachon?</h3>
+                        <div class="text-lg text-white/90">
+                            <p class="font-bold text-xl">2025-yil 22-oktabr, Chorshanba</p>
+                            <p>Soat 18:00</p>
+                        </div>
+                    </div>
+                     <div data-aos="slide-left" data-aos-delay="200" class="glass-effect-dark p-6 rounded-lg">
+                        <h3 class="font-heading text-3xl font-semibold mb-4">Qayerda?</h3>
+                        <div class="text-lg text-white/90">
+                            <p class="font-bold text-xl">"Nilufar Wedding hall</p>
+                            <p>Farg'ona, Buvayda tumani, Jov MFY</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navigatsiya tugmalari endi xarita tepasida -->
+                <div class="flex justify-center space-x-4 mb-8 max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="300">
+                    <a href="https://maps.app.goo.gl/UpqHhFvSihoUeurK8" target="_blank" class="bg-white/90 text-gray-800 py-3 px-6 rounded-lg hover:bg-white transition duration-300 flex items-center space-x-2 font-bold">
+                        <i class="fab fa-google"></i>
+                        <span>Google Mapsda ko'rish</span>
+                    </a>
+                    <a href="https://yandex.uz/maps/-/CLuvmSID" target="_blank" class="bg-yellow-400 text-black py-3 px-6 rounded-lg hover:bg-yellow-500 transition duration-300 flex items-center space-x-2 font-bold">
+                        <i class="fab fa-yandex"></i>
+                        <span>Yandex Navigatorga o'tish</span>
+                    </a>
+                </div>
+                
+                <!-- Xarita Widgeti -->
+                <div class="max-w-4xl mx-auto w-full h-96 rounded-lg overflow-hidden shadow-2xl border-4 border-white/50" data-aos="zoom-in-up" data-aos-delay="400">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3029.4612074236666!2d71.10980307653703!3d40.59764684460753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bae17bd9daaf8f%3A0x90def4d819bf1070!2zIiLQndCY0JvQo9Ck0JDQoCIiINCi067QmdKy0J7QndCQ0KHQmA!5e0!3m2!1sru!2s!4v1759123056714!5m2!1sru!2s" width="900" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Wishes Section -->
+        <section id="wishes" class="py-20 lg:py-32 section-bg relative" style="background-image: url('https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');">
+            <div class="section-animation"></div>
+            <div class="container mx-auto px-6 content-container text-white">
+                <div class="text-center mb-16">
+                    <div class="decorated-heading text-white mb-4" data-aos="fade-down">
+                        <h2 class="font-script text-6xl">Samimiy Tilaklar</h2>
+                    </div>
+                    <p class="text-lg" data-aos="fade-up" data-aos-delay="300">Biz uchun eng yaxshi sovg'a - sizning shirin so'zingiz</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <!-- Dummy wishes with staggered delay -->
+                    <div class="glass-effect p-6 rounded-lg" data-aos="flip-up" data-aos-delay="500">
+                        <p class="mb-4">"Baxtli bo'linglar! Sevgingiz abadiy bo'lsin, hayot yo'lingiz esa doim nurafshon bo'lsin. To'yingiz muborak!"</p>
+                        <p class="font-heading text-right font-semibold">- Oila a'zolaringiz</p>
+                    </div>
+                     <div class="glass-effect p-6 rounded-lg" data-aos="flip-up" data-aos-delay="700">
+                        <p class="mb-4">"Shohruhva Samiyya! Bu ajoyib kunda sizlarga eng ezgu tilaklarni tilayman. Bir-biringizga bo'lgan mehringiz hech qachon so'nmasin."</p>
+                        <p class="font-heading text-right font-semibold">- Aziz Do'stingiz</p>
+                    </div>
+                     <div class="glass-effect p-6 rounded-lg" data-aos="flip-up" data-aos-delay="900">
+                        <p class="mb-4">"Qo'sha qarib, farzandlaringiz rohatini ko'rib yuringlar. Bugungi kun hayotingizdagi eng baxtli kunlarning debochasi bo'lsin."</p>
+                        <p class="font-heading text-right font-semibold">- Yaqinlaringiz</p>
+                    </div>
+                </div>
+                <div id="new-wishes-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mt-8"></div>
+                <div class="text-center mt-16">
+                    <h3 class="font-heading text-3xl mb-4" data-aos="fade-up">Tabriknoma Yuborish</h3>
+                     <form id="wish-form" class="max-w-lg mx-auto" data-aos="fade-up" data-aos-delay="100">
+                        <div class="mb-4">
+                            <input type="text" id="wisher-name" placeholder="Ismingiz" class="w-full p-3 rounded bg-white/20 border border-white/30 placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white">
+                        </div>
+                        <div class="mb-4">
+                            <textarea id="wish-message" rows="5" placeholder="Sizning tabrigingiz..." class="w-full p-3 rounded bg-white/20 border border-white/30 placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white"></textarea>
+                        </div>
+                        <button type="submit" class="bg-white/90 text-gray-800 font-bold py-3 px-6 rounded hover:bg-white transition duration-300">Yuborish</button>
+                    </form>
+                    <p id="wish-response" class="mt-4 text-lg"></p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="font-script text-2xl mb-4">Shohruh & Samiyya</h4>
+                    <p>Baxtli kunimizda biz bilan bo'lganingiz uchun minnatdormiz. Sizning muhabbatingiz va tabriklaringiz biz uchun eng qadrli sovg'adir.</p>
+                </div>
+                
+                <div>
+                    <h4>Tez O'tishlar</h4>
+                    <div class="grid grid-cols-2 gap-2">
+                        <a href="#home">Bosh Sahifa</a>
+                        <a href="#about">Biz Haqimizda</a>
+                        <a href="#story">Bizning Hikoya</a>
+                        <a href="#invitation">Taklifnoma</a>
+                        <a href="#gallery">Galereya</a>
+                        <a href="#location">Manzil</a>
+                        <a href="#wishes">Tabriklar</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4>Biz bilan bog'lanish</h4>
+                    <p><i class="fas fa-phone mr-2"></i> +998 90 123 45 67</p>
+                    <p><i class="fas fa-envelope mr-2"></i> Shohruh.Samiyya2025@gmail.com</p>
+                    
+                    <div class="social-icons">
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/30 mt-8 pt-6 text-center">
+                <p>&copy; 2025 Shohruh & Samiyya. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // AOS Initialization
+            AOS.init({
+                duration: 1000,
+                once: true,
+                offset: 50,
+            });
+
+            // Taymer funksiyasi
+            function updateCountdown() {
+                const weddingDate = new Date('October 25, 2025 18:00:00').getTime();
+                const now = new Date().getTime();
+                const distance = weddingDate - now;
+
+                // Vaqtni hisoblash
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // HTML ni yangilash
+                document.getElementById('countdown-timer').innerHTML = 
+                    `<div class="countdown-item">
+                        <span class="countdown-number">${days}</span>
+                        <span class="countdown-label">Kun</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number">${hours}</span>
+                        <span class="countdown-label">Soat</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number">${minutes}</span>
+                        <span class="countdown-label">Daqiqa</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number">${seconds}</span>
+                        <span class="countdown-label">Soniya</span>
+                    </div>`;
+
+                // Agar vaqt tugab bo'lsa
+                if (distance < 0) {
+                    clearInterval(countdownInterval);
+                    document.getElementById('countdown-timer').innerHTML = "<div class='text-2xl font-bold text-white'>To'y boshlandi!</div>";
+                }
+            }
+
+            // Taymerni ishga tushirish
+            updateCountdown();
+            const countdownInterval = setInterval(updateCountdown, 1000);
+
+            // Suzuvchi elementlarni yaratish (faqat yulduz va yurak)
+            function createFloatingElements() {
+                const container = document.getElementById('floating-elements-container');
+                const elementTypes = ['star', 'heart']; // Faqat yulduz va yurak
+                
+                for (let i = 0; i < 20; i++) {
+                    const element = document.createElement('div');
+                    element.className = 'floating-element';
+                    
+                    // Tasodifiy boshlang'ich pozitsiya
+                    const startX = Math.random() * window.innerWidth;
+                    const startY = Math.random() * window.innerHeight;
+                    
+                    // Tasodifiy davomiylik
+                    const duration = 15 + Math.random() * 20;
+                    
+                    // Tasodifiy element turi
+                    const type = elementTypes[Math.floor(Math.random() * elementTypes.length)];
+                    
+                    // Elementning ko'rinishi
+                    element.style.left = startX + 'px';
+                    element.style.top = startY + 'px';
+                    element.style.animationDuration = duration + 's';
+                    element.style.animationDelay = Math.random() * 5 + 's';
+                    
+                    // Element turlari bo'yicha tayyorlash
+                    if (type === 'star') {
+                        element.innerHTML = '<div class="star"></div>';
+                    } else if (type === 'heart') {
+                        element.innerHTML = '<i class="fas fa-heart heart"></i>';
+                    }
+                    
+                    container.appendChild(element);
+                    
+                    // Animatsiya tugagach, elementni qayta yaratish
+                    setTimeout(() => {
+                        element.remove();
+                        createFloatingElement(type);
+                    }, duration * 1000);
+                }
+            }
+            
+            function createFloatingElement(type) {
+                const container = document.getElementById('floating-elements-container');
+                const element = document.createElement('div');
+                element.className = 'floating-element';
+                
+                // Boshlang'ich pozitsiya (ekranning yuqori qismidan)
+                const startX = Math.random() * window.innerWidth;
+                const startY = -50;
+                
+                // Davomiylik
+                const duration = 15 + Math.random() * 20;
+                
+                // Elementning ko'rinishi
+                element.style.left = startX + 'px';
+                element.style.top = startY + 'px';
+                element.style.animationDuration = duration + 's';
+                
+                // Element turlari bo'yicha tayyorlash
+                if (type === 'star') {
+                    element.innerHTML = '<div class="star"></div>';
+                } else if (type === 'heart') {
+                    element.innerHTML = '<i class="fas fa-heart heart"></i>';
+                }
+                
+                container.appendChild(element);
+                
+                // Animatsiya tugagach, elementni qayta yaratish
+                setTimeout(() => {
+                    element.remove();
+                    createFloatingElement(type);
+                }, duration * 1000);
+            }
+
+            // Musiqa boshqaruvchi
+            const musicToggle = document.getElementById('musicToggle');
+            const bgMusic = document.getElementById('bgMusic');
+            let isPlaying = false;
+            
+            // Avtomatik boshlash
+            setTimeout(() => {
+                bgMusic.play().then(() => {
+                    isPlaying = true;
+                    musicToggle.innerHTML = '<i class="fas fa-pause fa-lg"></i>';
+                }).catch(error => {
+                    console.log("Avtomatik ijro bloklangan, foydalanuvchi bosishi kerak");
+                    isPlaying = false;
+                });
+            }, 1000);
+            
+            musicToggle.addEventListener('click', function() {
+                if (isPlaying) {
+                    bgMusic.pause();
+                    musicToggle.innerHTML = '<i class="fas fa-play fa-lg"></i>';
+                } else {
+                    bgMusic.play();
+                    musicToggle.innerHTML = '<i class="fas fa-pause fa-lg"></i>';
+                }
+                isPlaying = !isPlaying;
+            });
+
+            // Taklifnoma gullar effekti
+            const invitationSection = document.getElementById('invitation');
+            const cornerFlowers = document.querySelectorAll('.corner-flower');
+            
+            function checkFlowerVisibility() {
+                const rect = invitationSection.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                if (rect.top < windowHeight * 0.8 && rect.bottom > 0) {
+                    cornerFlowers.forEach(flower => {
+                        flower.classList.add('visible');
+                    });
+                } else {
+                    cornerFlowers.forEach(flower => {
+                        flower.classList.remove('visible');
+                    });
+                }
+            }
+            
+            window.addEventListener('scroll', checkFlowerVisibility);
+            window.addEventListener('resize', checkFlowerVisibility);
+            checkFlowerVisibility(); // Dastlabki tekshirish
+
+            // Taklifnoma tugmalari
+            const attendanceBtns = document.querySelectorAll('.attendance-btn');
+            const rsvpResponse = document.getElementById('rsvp-response');
+            
+            attendanceBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Barcha tugmalardan active klassini olib tashlash
+                    attendanceBtns.forEach(b => b.classList.remove('active'));
+                    // Bosilgan tugmaga active klassini qo'shish
+                    this.classList.add('active');
+                    
+                    const response = this.getAttribute('data-response');
+                    if (response === 'yes') {
+                        rsvpResponse.textContent = "Rahmat, sizning kelishingizni kutamiz!";
+                        rsvpResponse.className = "mt-4 text-lg text-green-300";
+                    } else {
+                        rsvpResponse.textContent = "Tushunarli, keyingi marosimlarda kutamiz!";
+                        rsvpResponse.className = "mt-4 text-lg text-yellow-300";
+                    }
+                });
+            });
+
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Close mobile menu when a link is clicked
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Active Nav Link on Scroll
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 100) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+                
+                updateStarPosition(); // Scrollga mos yulduz pozitsiyasini yangilash
+            });
+
+            // Yulduzcha Scroll Logikasi
+            const storySection = document.getElementById('story');
+            const timelineStar = document.getElementById('timeline-star');
+            
+            function updateStarPosition() {
+                // Faqat katta ekranlarda (md: dan yuqori) ishlatish
+                if (window.innerWidth < 768 || !timelineStar || !storySection) {
+                    return; 
+                }
+
+                const lineElement = storySection.querySelector('.timeline-line');
+                if (!lineElement) return;
+
+                const lineRect = lineElement.getBoundingClientRect();
+                
+                // Liniyaning yuqori qismidan qancha pastda skroll qilingan (viewportga nisbatan)
+                const scrollProgress = window.innerHeight * 0.3 - lineRect.top; 
+                
+                // Liniya balandligi
+                const totalLineHeight = lineElement.offsetHeight;
+                
+                // 0 dan 1 gacha bo'lgan nisbat (0: tepa, 1: past)
+                let starPositionRatio = scrollProgress / totalLineHeight;
+                
+                // Nisbatni 0 va 1 oralig'ida ushlab turish
+                starPositionRatio = Math.max(0, Math.min(1, starPositionRatio));
+                
+                // Tarjima piksel qiymati
+                const translateY = starPositionRatio * totalLineHeight;
+
+                // Transformatsiya qo'llash
+                timelineStar.style.transform = `translateX(-50%) translateY(${translateY}px)`;
+            }
+
+            // Dastlabki yuklanishda pozitsiyani to'g'irlash
+            updateStarPosition();
+            window.addEventListener('resize', updateStarPosition);
+            
+            // Wish Form
+            const wishForm = document.getElementById('wish-form');
+            const wishResponse = document.getElementById('wish-response');
+            const newWishesContainer = document.getElementById('new-wishes-container');
+
+            wishForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('wisher-name').value;
+                const message = document.getElementById('wish-message').value;
+
+                if (name && message) {
+                    const newWish = `
+                        <div class="glass-effect p-6 rounded-lg" data-aos="flip-up" data-aos-delay="0">
+                            <p class="mb-4">"${message}"</p>
+                            <p class="font-heading text-right font-semibold">- ${name}</p>
+                        </div>
+                    `;
+                    // Add new wish to the beginning of the container for freshness
+                    newWishesContainer.insertAdjacentHTML('afterbegin', newWish);
+                    
+                    // Reinitialize AOS for the newly added element
+                    AOS.refresh();
+
+                    wishResponse.textContent = "Tabrigingiz uchun tashakkur!";
+                    wishResponse.classList.add('text-green-300');
+                    wishForm.reset();
+                    
+                     setTimeout(() => {
+                       wishResponse.textContent = "";
+                       wishResponse.classList.remove('text-green-300');
+                    }, 4000);
+
+                } else {
+                     wishResponse.textContent = "Iltimos, barcha maydonlarni to'ldiring.";
+                     wishResponse.classList.add('text-red-300');
+                      setTimeout(() => {
+                       wishResponse.textContent = "";
+                       wishResponse.classList.remove('text-red-300');
+                    }, 4000);
+                }
+            });
+
+            // Suzuvchi elementlarni ishga tushirish (faqat yulduz va yurak)
+            createFloatingElements();
+        });
+    </script>
+</body>
+</html>
