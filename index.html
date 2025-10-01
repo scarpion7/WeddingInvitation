@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shohruh & Samiyya - To'y Taklifnomasi</title>
 
+    <!-- Firebase va Firestore CDN -->
+    <script src="https://www.gstatic.com/firebasejs/12.3.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.3.0/firebase-auth-compat.js"></script>
+
     <!-- Chosen Palette: Classic Wedding (Cream, Gold, Soft Pink) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -500,15 +505,253 @@
                 transform: scale(1.5);
             }
         }
+        
+        /* Admin paneli uchun stillar */
+        .admin-panel {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(192, 160, 128, 0.9);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .admin-panel:hover {
+            background: rgba(192, 160, 128, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        .admin-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .admin-content {
+            background: #FDFBF8;
+            color: #4a4a4a;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 95%;
+            max-height: 90%;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            width: 1000px;
+            position: relative;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .admin-header {
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #C0A080;
+            padding-bottom: 15px;
+        }
+        
+        .admin-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #C0A080;
+            margin-bottom: 10px;
+        }
+        
+        .admin-subtitle {
+            font-size: 1.1rem;
+            color: #8B7355;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #C0A080, #D4BFA0);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(192, 160, 128, 0.3);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .admin-tabs {
+            display: flex;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #E5E5E5;
+        }
+        
+        .admin-tab {
+            padding: 12px 25px;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #8B7355;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .admin-tab.active {
+            color: #C0A080;
+            border-bottom: 3px solid #C0A080;
+        }
+        
+        .admin-tab:hover {
+            color: #C0A080;
+        }
+        
+        .admin-data {
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        .data-table th {
+            background: #C0A080;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .data-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #E5E5E5;
+        }
+        
+        .data-table tr:hover {
+            background: rgba(192, 160, 128, 0.1);
+        }
+        
+        .wish-item, .rsvp-item {
+            border-bottom: 1px solid #E5E5E5;
+            padding: 15px 0;
+        }
+        
+        .wish-actions, .rsvp-actions {
+            margin-top: 10px;
+        }
+        
+        .admin-btn {
+            padding: 8px 16px;
+            margin: 0 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .export-btn {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .export-btn:hover {
+            background: #45a049;
+        }
+        
+        .delete-btn {
+            background: #f44336;
+            color: white;
+        }
+        
+        .delete-btn:hover {
+            background: #d32f2f;
+        }
+        
+        .close-admin {
+            background: #C0A080;
+            color: white;
+            padding: 12px 25px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .close-admin:hover {
+            background: #A88C6C;
+        }
+        
+        .response-yes {
+            color: #4CAF50;
+            font-weight: 600;
+        }
+        
+        .response-no {
+            color: #f44336;
+            font-weight: 600;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #8B7355;
+        }
+        
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
     </style>
 </head>
 <body class="leading-relaxed">
 
+    <!-- Admin Panel Tugmasi -->
+    <div class="admin-panel" id="adminToggle">
+        <i class="fas fa-cog"></i> Admin
+    </div>
+
     <!-- Musiqa boshqaruvchi -->
     <div class="music-player" id="musicToggle">
         <i class="fas fa-music fa-lg"></i>
-        <audio id="bgMusic" autoplay loop>
-            <source src="perfect.mp3" type="audio/mp3">
+        <audio id="bgMusic" loop>
+            <source src="https://voca.ro/1d5ilRCgj6mT" type="audio/mp3">
         </audio>
     </div>
 
@@ -549,9 +792,8 @@
         <section id="home" class="h-screen flex items-center justify-center text-white text-center section-bg relative" style="background-image: url('https://images.pexels.com/photos/169198/pexels-photo-169198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');">
             <div class="section-animation"></div>
             <div class="content-container px-4">
-                <p class="mb-4 tracking-widest" data-aos="zoom-in" data-aos-duration="1200">BIZ TURMUSH QURMOQDAMIZ</p>
+                <h1 class="font-script text-5xl md:text-7xl mb-12" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="1200">Wedding invitation</h1>
                 <h1 class="font-script text-7xl md:text-9xl mb-4" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="1200">Shohruh & Samiyya</h1>
-                <p class="font-heading text-2xl mb-8" data-aos="zoom-in" data-aos-delay="600" data-aos-duration="1200">25 | 10 | 2025</p>
             </div>
         </section>
 
@@ -567,12 +809,12 @@
                 </div>
                 <div class="grid md:grid-cols-2 gap-12 text-white items-center">
                     <div class="text-center glass-effect rounded-lg p-8" data-aos="slide-right" data-aos-delay="500">
-                        <img src="https://images.pexels.com/photos/3779760/pexels-photo-3779760.jpeg?auto=compress&cs=tinysrgb&w=600" class="w-40 h-40 rounded-full mx-auto mb-6 border-4 border-white/50 object-cover" alt="Shohruhning surati" data-aos="flip-up" data-aos-delay="800">
+                        <img src="https://static.vecteezy.com/system/resources/previews/055/706/131/non_2x/groom-suit-simple-silhouette-black-illustration-vector.jpg" class="w-40 h-40 rounded-full mx-auto mb-6 border-4 border-white/50 object-cover" alt="Shohruhning surati" data-aos="flip-up" data-aos-delay="800">
                         <h3 class="font-script text-4xl mb-2">Shohruh</h3>
                         <p class="font-sans">"Hayotimdagi eng yaxshi qaror - bu unga "ha" deyishini so'rash edi. U mening dunyoyimni yoritdi va har bir kunimni mazmunga to'ldirdi. U bilan birga quradigan kelajagimizni intiqlik bilan kutaman."</p>
                     </div>
                     <div class="text-center glass-effect rounded-lg p-8" data-aos="slide-left" data-aos-delay="500">
-                        <img src="https://images.pexels.com/photos/3290236/pexels-photo-3290236.jpeg?auto=compress&cs=tinysrgb&w=600" class="w-40 h-40 rounded-full mx-auto mb-6 border-4 border-white/50 object-cover" alt="Samiyyaning surati" data-aos="flip-up" data-aos-delay="800">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL-UWkBLW1h56yr10aFNyCM8C9jBIXJaJ-Lw&s" class="w-40 h-40 rounded-full mx-auto mb-6 border-4 border-white/50 object-cover" alt="Samiyyaning surati" data-aos="flip-up" data-aos-delay="800">
                         <h3 class="font-script text-4xl mb-2">Samiyya</h3>
                         <p class="font-sans">"Uning yonida men o'zimning eng yaxshi qirralarimni ochdim. Uning mehri, qo'llab-quvvatlashi va samimiyligi men uchun eng katta sovg'a. Bir umr u bilan baxtli yashashga tayyorman."</p>
                     </div>
@@ -605,16 +847,16 @@
                         <div class="timeline-item-custom" data-aos="fade-right" data-aos-delay="600">
                             <div class="timeline-content-card">
                                 <h4 class="font-heading text-xl font-semibold mb-1">Ilk Uchrashuv</h4>
-                                <p class="text-sm text-white/80 mb-2">2021-yil bahori</p>
-                                <p class="font-sans">Qahvaxonadagi tasodifiy uchrashuv bizning hikoyamizga debocha bo'ldi. O'shanda ikkimiz ham bu tanishuv hayotimizni o'zgartirib yuborishini bilmagan edik.</p>
+                                <p class="text-sm text-white/80 mb-2">2025-yil bahori</p>
+                                <p class="font-sans">Birinchi uchrashuv bizning hikoyamizga debocha bo'ldi. O'shanda ikkimiz ham bu tanishuv hayotimizni o'zgartirib yuborishini bilmagan edik.</p>
                             </div>
                         </div>
 
                         <!-- 2. Birinchi Sayohat (Even - Mobile: Left | Desktop: Right) -->
                         <div class="timeline-item-custom md:ml-auto" data-aos="fade-left" data-aos-delay="700">
                             <div class="timeline-content-card">
-                                <h4 class="font-heading text-xl font-semibold mb-1">Birinchi Sayohat</h4>
-                                 <p class="text-sm text-white/80 mb-2">2022-yil yozi</p>
+                                <h4 class="font-heading text-xl font-semibold mb-1">Sayohat</h4>
+                                 <p class="text-sm text-white/80 mb-2"></p>
                                 <p class="font-sans">Tog'lar bag'riga qilgan ilk sayohatimiz bir-birimizni yanada yaqinroq bilishimizga yordam berdi. Tabiat go'zalligi bizning tuyg'ularimizga o'zgacha jilo bag'ishladi.</p>
                             </div>
                         </div>
@@ -622,9 +864,9 @@
                         <!-- 3. Taklif (Odd - Mobile: Left | Desktop: Left) -->
                         <div class="timeline-item-custom" data-aos="fade-right" data-aos-delay="800">
                             <div class="timeline-content-card">
-                                <h4 class="font-heading text-xl font-semibold mb-1">Taklif</h4>
-                                 <p class="text-sm text-white/80 mb-2">2024-yil kuzi</p>
-                                <p class="font-sans">Quyosh botayotgan dengiz sohilida, u men kutmagan, ammo bir umr orzu qilgan savolni berdi. Bu hayotimdagi eng baxtli "Ha!" edi.</p>
+                                <h4 class="font-heading text-xl font-semibold mb-1">Suhbatlar</h4>
+                                 <p class="text-sm text-white/80 mb-2"></p>
+                                <p class="font-sans">U bilan suhbatimiz juda samimiy va hissiyotlarga boy edi. U bilan men o'zimni juda baxtli his etardim.</p>
                             </div>
                         </div>
 
@@ -653,32 +895,24 @@
             </div>
             
             <div class="container mx-auto px-6 content-container text-white text-center relative">
-                 <!-- Gul effekti -->
-                 <div class="corner-flowers">
-                     <div class="corner-flower top-left">
-                         <img src="https://www.clipartmax.com/png/middle/26-265549_flower-png-image-flower-png-transparent-background.png" alt="Gul" style="width: 100%; height: 100%; object-fit: contain;">
-                     </div>
-                     <div class="corner-flower top-right">
-                         <img src="https://www.clipartmax.com/png/middle/26-265549_flower-png-image-flower-png-transparent-background.png" alt="Gul" style="width: 100%; height: 100%; object-fit: contain;">
-                     </div>
-                 </div>
-                 
+                                  
                  <div class="max-w-3xl mx-auto glass-effect rounded-lg p-8 md:p-12" data-aos="zoom-in" data-aos-duration="1500">
                      <div class="decorated-heading text-white mb-4" data-aos="fade-down" data-aos-delay="300">
                         <h2 class="font-script text-6xl">Taklifnoma</h2>
                     </div>
-                    <p class="text-lg mb-8" data-aos="fade-up" data-aos-delay="600">Aziz va qadrli do'stlar, qarindoshlar!</p>
-                    <p class="mb-4" data-aos="fade-up" data-aos-delay="700">Sizlarni hayotimizdagi eng baxtli, quvonchli va unutilmas kunimiz – nikoh oqshomimizga bag'ishlangan to'y dasturxonimizga taklif etamiz.</p>
+                    <p class="text-lg mb-8" data-aos="fade-up" data-aos-delay="600">Assalomu alaykum</p>
+                    <p class="text-lg mb-8" data-aos="fade-up" data-aos-delay="600">Aziz va hurmatli insonim!</p>
+                    <p class="mb-4" data-aos="fade-up" data-aos-delay="700">Sizni hayotimizdagi eng baxtli, quvonchli va unutilmas kunimiz – nikoh oqshomimizga bag'ishlangan to'y dasturxonimizga taklif etamiz.</p>
                     <p class="mb-8" data-aos="fade-up" data-aos-delay="800">Ushbu quvonchli kunimizda biz bilan birga bo'lib, baxtli onlarimizga guvoh bo'lishingiz biz uchun katta sharafdir.</p>
                     <p class="font-heading text-xl font-semibold" data-aos="fade-up" data-aos-delay="900">Hurmat va ehtirom ila,</p>
-                    <p class="font-script text-4xl mt-2" data-aos="zoom-in" data-aos-delay="1000">Shohruhva Samiyya</p>
+                    <p class="font-script text-4xl mt-2" data-aos="zoom-in" data-aos-delay="1000">Shohruh va Samiyya</p>
                     <hr class="my-8 border-white/30" data-aos="zoom-in" data-aos-delay="1100">
                     
                     <div class="mt-8" data-aos="fade-up" data-aos-delay="1200">
-                        <h3 class="font-heading text-2xl mb-4">Tashrifingizni tasdiqlang</h3>
+                        <h3 class="font-heading text-2xl mb-4">Taklifimizni qabul qilasizmi?</h3>
                         <div class="flex justify-center mt-4">
-                            <button class="attendance-btn" data-response="yes">Kelaman</button>
-                            <button class="attendance-btn" data-response="no">Kela olmayman</button>
+                            <button class="attendance-btn" data-response="yes">Mamnuniyat ila qabul qilaman</button>
+                            <button class="attendance-btn" data-response="no">Afsus qabul qila olmayman</button>
                         </div>
                         <p id="rsvp-response" class="mt-4 text-lg"></p>
                     </div>
@@ -711,31 +945,25 @@
             </p>
         </div>
         
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             <!-- Images with staggered animations -->
             <div data-aos="zoom-in-up" data-aos-delay="0">
-                <img src="https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Nikoh to'yi rasmi 1" class="gallery-image">
+                <img src="data:image/jpeg;base64,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" alt="Nikoh to'yi rasmi 1" class="gallery-image">
             </div>
             <div data-aos="zoom-in-up" data-aos-delay="100">
-                <img src="https://images.pexels.com/photos/1031317/pexels-photo-1031317.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Nikoh to'yi rasmi 2" class="gallery-image">
+                <img src="data:image/jpeg;base64,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" alt="Nikoh to'yi rasmi 2" class="gallery-image">
             </div>
             <div data-aos="zoom-in-up" data-aos-delay="200">
-                <img src="https://images.pexels.com/photos/3299718/pexels-photo-3299718.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Nikoh to'yi rasmi 3" class="gallery-image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7q5vwjhD1yit8iKyCNF9KK2JkL4mUWtZP1g&s" alt="Nikoh to'yi rasmi 3" class="gallery-image">
             </div>
             <div data-aos="zoom-in-up" data-aos-delay="300">
-                <img src="https://images.pexels.com/photos/208852/pexels-photo-208852.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Nikoh to'yi rasmi 4" class="gallery-image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQEXNWE_5ncmqMfdKnNPEaHtstaUtlQgcV-A&s" alt="Nikoh to'yi rasmi 4" class="gallery-image">
             </div>
             <div data-aos="zoom-in-up" data-aos-delay="400">
-                <img src="https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Nikoh to'yi rasmi 5" class="gallery-image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4qLYdoe1ztPw2ZIiYSpAbj0OsVxfK2GSAqA&s" alt="Nikoh to'yi rasmi 5" class="gallery-image">
             </div>
             <div data-aos="zoom-in-up" data-aos-delay="500">
-                <img src="https://images.pexels.com/photos/392018/pexels-photo-392018.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Nikoh to'yi rasmi 6" class="gallery-image">
-            </div>
-            <div data-aos="zoom-in-up" data-aos-delay="600">
-                <img src="https://images.pexels.com/photos/3312937/pexels-photo-3312937.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Nikoh to'yi rasmi 7" class="gallery-image">
-            </div>
-            <div data-aos="zoom-in-up" data-aos-delay="700">
-                <img src="https://images.pexels.com/photos/265851/pexels-photo-265851.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Nikoh to'yi rasmi 8" class="gallery-image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoxWNAjZHL7gwll5GdQa73ZEnM0CNYmH8Okg&s" alt="Nikoh to'yi rasmi 6" class="gallery-image">
             </div>
         </div>
     </div>
@@ -766,7 +994,7 @@
                         <h3 class="font-heading text-3xl font-semibold mb-4">Qachon?</h3>
                         <div class="text-lg text-white/90">
                             <p class="font-bold text-xl">2025-yil 22-oktabr, Chorshanba</p>
-                            <p>Soat 18:00</p>
+                            <p>Soat 11:00</p>
                         </div>
                     </div>
                      <div data-aos="slide-left" data-aos-delay="200" class="glass-effect-dark p-6 rounded-lg">
@@ -843,47 +1071,85 @@
 
     <footer class="footer">
         <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-3 gap-8">
-                <div>
-                    <h4 class="font-script text-2xl mb-4">Shohruh & Samiyya</h4>
-                    <p>Baxtli kunimizda biz bilan bo'lganingiz uchun minnatdormiz. Sizning muhabbatingiz va tabriklaringiz biz uchun eng qadrli sovg'adir.</p>
-                </div>
-                
-                <div>
-                    <h4>Tez O'tishlar</h4>
-                    <div class="grid grid-cols-2 gap-2">
-                        <a href="#home">Bosh Sahifa</a>
-                        <a href="#about">Biz Haqimizda</a>
-                        <a href="#story">Bizning Hikoya</a>
-                        <a href="#invitation">Taklifnoma</a>
-                        <a href="#gallery">Galereya</a>
-                        <a href="#location">Manzil</a>
-                        <a href="#wishes">Tabriklar</a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4>Biz bilan bog'lanish</h4>
-                    <p><i class="fas fa-phone mr-2"></i> +998 90 123 45 67</p>
-                    <p><i class="fas fa-envelope mr-2"></i> Shohruh.Samiyya2025@gmail.com</p>
-                    
-                    <div class="social-icons">
-                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
-                        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
-                    </div>
+            <div class="grid md:grid-cols-2 gap-8">
+            <!-- Chap: Tez o'tishlar -->
+            <div>
+                <h4>Tez O'tishlar</h4>
+                <div class="grid grid-cols-1 gap-2">
+                    <a href="#home">Bosh Sahifa</a>
+                    <a href="#about">Biz Haqimizda</a>
+                    <a href="#story">Bizning Hikoya</a>
+                    <a href="#invitation">Taklifnoma</a>
+                    <a href="#gallery">Galereya</a>
+                    <a href="#location">Manzil</a>
+                    <a href="#wishes">Tabriklar</a>
                 </div>
             </div>
-            
-            <div class="border-t border-white/30 mt-8 pt-6 text-center">
-                <p>&copy; 2025 Shohruh & Samiyya. Barcha huquqlar himoyalangan.</p>
+
+            <!-- O'ng: Biz bilan bog'lanish -->
+            <div class="text-right">
+                <h4>Biz bilan bog'lanish</h4>
+                <p><i class="fas fa-phone mr-2"></i> +998 99 096 46 01</p>
+                <div class="social-icons justify-end">
+                    <a href="https://www.instagram.com/soibjonovna__?igsh=MW4xc3p5cmFxb3BrZg==" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://t.me/iimsmy" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                </div>
+            </div>
+            </div>
+
+            <!-- Pastki markaziy qism -->
+            <div class="border-t border-white/30 mt-8 pt-6 flex justify-center">
+            <p>&copy; 2025 Shohruh & Samiyya. Barcha huquqlar himoyalangan.</p>
             </div>
         </div>
     </footer>
-    
+
+    <!-- Admin Modal -->
+    <div id="adminModal" class="admin-modal" style="display: none;">
+        <div class="admin-content">
+            <div class="admin-header">
+                <h2 class="admin-title">Admin Panel</h2>
+                <p class="admin-subtitle">To'y taklifnomasi ma'lumotlari boshqaruvi</p>
+            </div>
+            
+            <div id="adminStats" class="stats-grid">
+                <!-- Statistikalar bu yerda ko'rsatiladi -->
+            </div>
+            
+            <div class="admin-tabs">
+                <button class="admin-tab active" data-tab="rsvps">RSVP Ma'lumotlari</button>
+                <button class="admin-tab" data-tab="wishes">Barcha Tabriklar</button>
+            </div>
+            
+            <div id="adminData" class="admin-data">
+                <!-- Ma'lumotlar bu yerda ko'rsatiladi -->
+            </div>
+            
+            <button class="close-admin" id="closeAdmin">Yopish</button>
+        </div>
+    </div>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // Firebase konfiguratsiyasi
+        const firebaseConfig = {
+            apiKey: "AIzaSyAvxwbLtlJOksfaU3R1S51AX-mCWXu7qBI",
+            authDomain: "weddinginvitationshs-2fc19.firebaseapp.com",
+            projectId: "weddinginvitationshs-2fc19",
+            storageBucket: "weddinginvitationshs-2fc19.firebasestorage.app",
+            messagingSenderId: "590883677785",
+            appId: "1:590883677785:web:8ddb9e586711ffe8813348",
+            measurementId: "G-GVGT0C8RGC"
+        };
+
+        // Firebase ni ishga tushirish
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        
+        // Admin holati
+        let isAdmin = false;
+        let currentTab = 'rsvps';
+
         document.addEventListener('DOMContentLoaded', function() {
             // AOS Initialization
             AOS.init({
@@ -892,9 +1158,261 @@
                 offset: 50,
             });
 
+            // Admin Panel Tugmasi
+            const adminToggle = document.getElementById('adminToggle');
+            const adminModal = document.getElementById('adminModal');
+            const closeAdmin = document.getElementById('closeAdmin');
+            const adminTabs = document.querySelectorAll('.admin-tab');
+            
+            adminToggle.addEventListener('click', function() {
+                const password = prompt("Admin parolini kiriting:");
+                if (password === "shohruh_samiyya_2025") {
+                    isAdmin = true;
+                    adminModal.style.display = 'flex';
+                    loadAdminData();
+                } else {
+                    alert("Noto'g'ri parol!");
+                }
+            });
+            
+            closeAdmin.addEventListener('click', function() {
+                adminModal.style.display = 'none';
+            });
+
+            // Admin tablarini boshqarish
+            adminTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Barcha tablardan active klassini olib tashlash
+                    adminTabs.forEach(t => t.classList.remove('active'));
+                    // Bosilgan tabga active klassini qo'shish
+                    this.classList.add('active');
+                    
+                    currentTab = this.getAttribute('data-tab');
+                    loadAdminData();
+                });
+            });
+
+            // Excel formatida yuklab olish funksiyasi
+            function exportToExcel(data, filename) {
+                // CSV formatiga o'tkazish
+                let csvContent = "data:text/csv;charset=utf-8,";
+                
+                if (currentTab === 'rsvps') {
+                    csvContent += "Ism,Javob,Sana,IP Manzil\n";
+                    data.forEach(item => {
+                        const date = item.timestamp ? new Date(item.timestamp.toDate()).toLocaleDateString('uz-UZ') : 'Noma\'lum sana';
+                        const row = `${item.name},${item.response},${date},${item.ip || 'Noma\'lum'}`;
+                        csvContent += row + "\n";
+                    });
+                } else if (currentTab === 'wishes') {
+                    csvContent += "Ism,Tabrik,Sana\n";
+                    data.forEach(item => {
+                        const date = item.timestamp ? new Date(item.timestamp.toDate()).toLocaleDateString('uz-UZ') : 'Noma\'lum sana';
+                        const row = `${item.name},"${item.message}",${date}`;
+                        csvContent += row + "\n";
+                    });
+                }
+                
+                // CSV faylini yaratish va yuklab olish
+                const encodedUri = encodeURI(csvContent);
+                const link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", `${filename}.csv`);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+
+            // Admin ma'lumotlarini yuklash
+            async function loadAdminData() {
+                if (!isAdmin) return;
+                
+                try {
+                    // RSVP statistikasi
+                    const rsvpSnapshot = await db.collection('rsvps').get();
+                    const rsvpData = rsvpSnapshot.docs.map(doc => ({id: doc.id, ...doc.data()}));
+                    
+                    const yesCount = rsvpData.filter(item => item.response === 'yes').length;
+                    const noCount = rsvpData.filter(item => item.response === 'no').length;
+                    const total = rsvpData.length;
+                    
+                    // Statistikani yangilash
+                    document.getElementById('adminStats').innerHTML = `
+                        <div class="stat-card">
+                            <div class="stat-number">${total}</div>
+                            <div class="stat-label">Jami RSVP</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">${yesCount}</div>
+                            <div class="stat-label">Qabul qilishlar</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">${noCount}</div>
+                            <div class="stat-label">Rad etishlar</div>
+                        </div>
+                    `;
+                    
+                    // Ma'lumotlarni tab bo'yicha ko'rsatish
+                    if (currentTab === 'rsvps') {
+                        let rsvpHTML = `
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                <h3 style="margin: 0;">RSVP Ma'lumotlari</h3>
+                                <button class="admin-btn export-btn" id="exportRSVP">
+                                    <i class="fas fa-download"></i> Excel formatida yuklab olish
+                                </button>
+                            </div>
+                        `;
+                        
+                        if (rsvpData.length === 0) {
+                            rsvpHTML += `
+                                <div class="empty-state">
+                                    <i class="fas fa-inbox"></i>
+                                    <p>Hali RSVP ma'lumotlari yo'q</p>
+                                </div>
+                            `;
+                        } else {
+                            rsvpHTML += `
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Ism</th>
+                                            <th>Javob</th>
+                                            <th>Sana</th>
+                                            <th>IP Manzil</th>
+                                            <th>Amallar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                            `;
+                            
+                            rsvpData.forEach(rsvp => {
+                                const date = rsvp.timestamp ? new Date(rsvp.timestamp.toDate()).toLocaleDateString('uz-UZ') : 'Noma\'lum sana';
+                                const responseClass = rsvp.response === 'yes' ? 'response-yes' : 'response-no';
+                                const responseText = rsvp.response === 'yes' ? 'Qabul qiladi' : 'Rad etadi';
+                                
+                                rsvpHTML += `
+                                    <tr>
+                                        <td>${rsvp.name}</td>
+                                        <td class="${responseClass}">${responseText}</td>
+                                        <td>${date}</td>
+                                        <td>${rsvp.ip || 'Noma\'lum'}</td>
+                                        <td>
+                                            <button class="admin-btn delete-btn" onclick="deleteRSVP('${rsvp.id}')">
+                                                <i class="fas fa-trash"></i> O'chirish
+                                            </button>
+                                        </td>
+                                    </tr>
+                                `;
+                            });
+                            
+                            rsvpHTML += `
+                                    </tbody>
+                                </table>
+                            `;
+                        }
+                        
+                        document.getElementById('adminData').innerHTML = rsvpHTML;
+                        
+                        // Export tugmasini qayta bog'lash
+                        document.getElementById('exportRSVP').addEventListener('click', () => {
+                            exportToExcel(rsvpData, 'RSVP_Malumotlari');
+                        });
+                    } else if (currentTab === 'wishes') {
+                        // Barcha tabriklarni olish
+                        const wishesSnapshot = await db.collection('wishes').orderBy('timestamp', 'desc').get();
+                        const allWishes = wishesSnapshot.docs.map(doc => ({id: doc.id, ...doc.data()}));
+                        
+                        let wishesHTML = `
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                <h3 style="margin: 0;">Barcha Tabriklar</h3>
+                                <button class="admin-btn export-btn" id="exportWishes">
+                                    <i class="fas fa-download"></i> Excel formatida yuklab olish
+                                </button>
+                            </div>
+                        `;
+                        
+                        if (allWishes.length === 0) {
+                            wishesHTML += `
+                                <div class="empty-state">
+                                    <i class="fas fa-inbox"></i>
+                                    <p>Hali tabrik yo'q</p>
+                                </div>
+                            `;
+                        } else {
+                            wishesHTML += `
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Ism</th>
+                                            <th>Tabrik</th>
+                                            <th>Sana</th>
+                                            <th>Amallar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                            `;
+                            
+                            allWishes.forEach(wish => {
+                                const date = wish.timestamp ? new Date(wish.timestamp.toDate()).toLocaleDateString('uz-UZ') : 'Noma\'lum sana';
+                                
+                                wishesHTML += `
+                                    <tr>
+                                        <td>${wish.name}</td>
+                                        <td>${wish.message}</td>
+                                        <td>${date}</td>
+                                        <td>
+                                            <button class="admin-btn delete-btn" onclick="deleteWish('${wish.id}')">
+                                                <i class="fas fa-trash"></i> O'chirish
+                                            </button>
+                                        </td>
+                                    </tr>
+                                `;
+                            });
+                            
+                            wishesHTML += `
+                                    </tbody>
+                                </table>
+                            `;
+                        }
+                        
+                        document.getElementById('adminData').innerHTML = wishesHTML;
+                        
+                        // Export tugmasini qayta bog'lash
+                        document.getElementById('exportWishes').addEventListener('click', () => {
+                            exportToExcel(allWishes, 'Tabriklar');
+                        });
+                    }
+                } catch (error) {
+                    console.error("Admin ma'lumotlarini yuklashda xatolik:", error);
+                }
+            }
+            
+            // Admin funksiyalari
+            window.deleteWish = async function(wishId) {
+                if (confirm("Bu tabrikni o'chirishni istaysizmi?")) {
+                    try {
+                        await db.collection('wishes').doc(wishId).delete();
+                        loadAdminData();
+                    } catch (error) {
+                        console.error("Tabrikni o'chirishda xatolik:", error);
+                    }
+                }
+            };
+            
+            window.deleteRSVP = async function(rsvpId) {
+                if (confirm("Bu RSVP ma'lumotini o'chirishni istaysizmi?")) {
+                    try {
+                        await db.collection('rsvps').doc(rsvpId).delete();
+                        loadAdminData();
+                    } catch (error) {
+                        console.error("RSVP ma'lumotini o'chirishda xatolik:", error);
+                    }
+                }
+            };
+
             // Taymer funksiyasi
             function updateCountdown() {
-                const weddingDate = new Date('October 25, 2025 18:00:00').getTime();
+                const weddingDate = new Date('October 22, 2025 11:00:00').getTime();
                 const now = new Date().getTime();
                 const distance = weddingDate - now;
 
@@ -1059,24 +1577,114 @@
             window.addEventListener('resize', checkFlowerVisibility);
             checkFlowerVisibility(); // Dastlabki tekshirish
 
+            // IP manzilini olish
+            async function getIP() {
+                try {
+                    const response = await fetch('https://api.ipify.org?format=json');
+                    const data = await response.json();
+                    return data.ip;
+                } catch (error) {
+                    return "unknown";
+                }
+            }
+
+            // RSVP ma'lumotlarini saqlash
+            async function saveRSVP(response, name = "Mehmon") {
+                try {
+                    await db.collection('rsvps').add({
+                        name: name,
+                        response: response,
+                        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                        ip: await getIP() // Qo'shimcha ma'lumot
+                    });
+                    return true;
+                } catch (error) {
+                    console.error("RSVP saqlashda xatolik:", error);
+                    return false;
+                }
+            }
+
+            // Tabriklarni saqlash (AVTOMATIK TASDIQLASH)
+            async function saveWish(name, message) {
+                try {
+                    await db.collection('wishes').add({
+                        name: name,
+                        message: message,
+                        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                        approved: true // Avtomatik tasdiqlash
+                    });
+                    return true;
+                } catch (error) {
+                    console.error("Tabrik saqlashda xatolik:", error);
+                    return false;
+                }
+            }
+
+            // Tabriklarni yuklash
+            async function loadWishes() {
+                try {
+                    const snapshot = await db.collection('wishes')
+                        .orderBy('timestamp', 'desc')
+                        .get();
+                    
+                    const wishesContainer = document.getElementById('new-wishes-container');
+                    wishesContainer.innerHTML = '';
+                    
+                    snapshot.forEach(doc => {
+                        const wish = doc.data();
+                        const date = wish.timestamp ? new Date(wish.timestamp.toDate()).toLocaleDateString('uz-UZ') : '';
+                        const wishHTML = `
+                            <div class="glass-effect p-6 rounded-lg" data-aos="flip-up">
+                                <p class="mb-4">"${wish.message}"</p>
+                                <p class="font-heading text-right font-semibold">- ${wish.name}</p>
+                                <p class="text-xs text-white/60 text-right mt-2">${date}</p>
+                            </div>
+                        `;
+                        wishesContainer.insertAdjacentHTML('beforeend', wishHTML);
+                    });
+                    
+                    AOS.refresh();
+                } catch (error) {
+                    console.error("Tabriklarni yuklashda xatolik:", error);
+                }
+            }
+
+            // Tabriklarni real-time yangilash
+            function setupWishesListener() {
+                db.collection('wishes')
+                    .orderBy('timestamp', 'desc')
+                    .onSnapshot(snapshot => {
+                        loadWishes(); // Yangilangan tabriklarni yuklash
+                    });
+            }
+
             // Taklifnoma tugmalari
             const attendanceBtns = document.querySelectorAll('.attendance-btn');
             const rsvpResponse = document.getElementById('rsvp-response');
             
             attendanceBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Barcha tugmalardan active klassini olib tashlash
+                btn.addEventListener('click', async function() {
                     attendanceBtns.forEach(b => b.classList.remove('active'));
-                    // Bosilgan tugmaga active klassini qo'shish
                     this.classList.add('active');
                     
                     const response = this.getAttribute('data-response');
-                    if (response === 'yes') {
-                        rsvpResponse.textContent = "Rahmat, sizning kelishingizni kutamiz!";
-                        rsvpResponse.className = "mt-4 text-lg text-green-300";
-                    } else {
-                        rsvpResponse.textContent = "Tushunarli, keyingi marosimlarda kutamiz!";
-                        rsvpResponse.className = "mt-4 text-lg text-yellow-300";
+                    const name = prompt("Iltimos, ismingizni kiriting:", "Mehmon");
+                    
+                    if (name) {
+                        const saved = await saveRSVP(response, name);
+                        
+                        if (saved) {
+                            if (response === 'yes') {
+                                rsvpResponse.textContent = `Rahmat, ${name}! Sizni oqshomda kutib qolamiz!🙂`;
+                                rsvpResponse.className = "mt-4 text-lg text-green-300";
+                            } else {
+                                rsvpResponse.textContent = `Rahmat, ${name}! Samimiy tilaklaringiz biz bilan!🙃`;
+                                rsvpResponse.className = "mt-4 text-lg text-yellow-300";
+                            }
+                        } else {
+                            rsvpResponse.textContent = "Xatolik yuz berdi, iltimos keyinroq urinib ko'ring.";
+                            rsvpResponse.className = "mt-4 text-lg text-red-300";
+                        }
                     }
                 });
             });
@@ -1152,51 +1760,52 @@
                 timelineStar.style.transform = `translateX(-50%) translateY(${translateY}px)`;
             }
 
-            // Dastlabki yuklanishda pozitsiyani to'g'irlash
+            // Dastlabki yuklanishda pozitsiyani to'g'rilash
             updateStarPosition();
             window.addEventListener('resize', updateStarPosition);
             
             // Wish Form
             const wishForm = document.getElementById('wish-form');
             const wishResponse = document.getElementById('wish-response');
-            const newWishesContainer = document.getElementById('new-wishes-container');
 
-            wishForm.addEventListener('submit', (e) => {
+            wishForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const name = document.getElementById('wisher-name').value;
                 const message = document.getElementById('wish-message').value;
 
                 if (name && message) {
-                    const newWish = `
-                        <div class="glass-effect p-6 rounded-lg" data-aos="flip-up" data-aos-delay="0">
-                            <p class="mb-4">"${message}"</p>
-                            <p class="font-heading text-right font-semibold">- ${name}</p>
-                        </div>
-                    `;
-                    // Add new wish to the beginning of the container for freshness
-                    newWishesContainer.insertAdjacentHTML('afterbegin', newWish);
+                    const saved = await saveWish(name, message);
                     
-                    // Reinitialize AOS for the newly added element
-                    AOS.refresh();
-
-                    wishResponse.textContent = "Tabrigingiz uchun tashakkur!";
-                    wishResponse.classList.add('text-green-300');
-                    wishForm.reset();
-                    
-                     setTimeout(() => {
-                       wishResponse.textContent = "";
-                       wishResponse.classList.remove('text-green-300');
-                    }, 4000);
-
+                    if (saved) {
+                        wishResponse.textContent = "Tabrigingiz uchun tashakkur! Hozir ko'rinadi.";
+                        wishResponse.classList.add('text-green-300');
+                        wishForm.reset();
+                        
+                        setTimeout(() => {
+                            wishResponse.textContent = "";
+                            wishResponse.classList.remove('text-green-300');
+                        }, 4000);
+                    } else {
+                        wishResponse.textContent = "Xatolik yuz berdi, iltimos keyinroq urinib ko'ring.";
+                        wishResponse.classList.add('text-red-300');
+                        setTimeout(() => {
+                            wishResponse.textContent = "";
+                            wishResponse.classList.remove('text-red-300');
+                        }, 4000);
+                    }
                 } else {
-                     wishResponse.textContent = "Iltimos, barcha maydonlarni to'ldiring.";
-                     wishResponse.classList.add('text-red-300');
-                      setTimeout(() => {
-                       wishResponse.textContent = "";
-                       wishResponse.classList.remove('text-red-300');
+                    wishResponse.textContent = "Iltimos, barcha maydonlarni to'ldiring.";
+                    wishResponse.classList.add('text-red-300');
+                    setTimeout(() => {
+                        wishResponse.textContent = "";
+                        wishResponse.classList.remove('text-red-300');
                     }, 4000);
                 }
             });
+
+            // Dastlabki yuklash
+            loadWishes();
+            setupWishesListener();
 
             // Suzuvchi elementlarni ishga tushirish (faqat yulduz va yurak)
             createFloatingElements();
