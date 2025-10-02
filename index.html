@@ -506,237 +506,177 @@
             }
         }
         
-        /* Admin paneli uchun stillar */
-        .admin-panel {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1000;
-            background: rgba(192, 160, 128, 0.9);
-            color: white;
-            padding: 12px 16px;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .admin-panel:hover {
-            background: rgba(192, 160, 128, 1);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        }
-        
-        .admin-modal {
+        /* RSVP Modal Styles */
+        .rsvp-modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.7);
-            z-index: 10000;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            z-index: 10000;
+            backdrop-filter: blur(10px);
         }
         
-        .admin-content {
-            background: #FDFBF8;
-            color: #4a4a4a;
-            padding: 30px;
-            border-radius: 15px;
-            max-width: 95%;
-            max-height: 90%;
-            overflow-y: auto;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            width: 1000px;
+        .rsvp-modal-content {
+            background: rgba(253, 251, 248, 0.95);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            overflow: hidden;
             position: relative;
-            font-family: 'Montserrat', sans-serif;
+            border: 1px solid rgba(192, 160, 128, 0.3);
         }
         
-        .admin-header {
-            text-align: center;
-            margin-bottom: 25px;
-            border-bottom: 2px solid #C0A080;
-            padding-bottom: 15px;
-        }
-        
-        .admin-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: #C0A080;
-            margin-bottom: 10px;
-        }
-        
-        .admin-subtitle {
-            font-size: 1.1rem;
-            color: #8B7355;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .stat-card {
+        .rsvp-modal-header {
             background: linear-gradient(135deg, #C0A080, #D4BFA0);
             color: white;
             padding: 20px;
-            border-radius: 10px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(192, 160, 128, 0.3);
+            position: relative;
         }
         
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 5px;
+        .rsvp-modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin: 0;
         }
         
-        .stat-label {
-            font-size: 1rem;
-            opacity: 0.9;
+        .rsvp-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.3s;
         }
         
-        .admin-tabs {
+        .rsvp-modal-close:hover {
+            opacity: 1;
+        }
+        
+        .rsvp-modal-body {
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .rsvp-modal-message {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .rsvp-modal-footer {
             display: flex;
-            margin-bottom: 25px;
-            border-bottom: 1px solid #E5E5E5;
+            justify-content: center;
         }
         
-        .admin-tab {
-            padding: 12px 25px;
-            background: none;
+        .rsvp-modal-btn {
+            background: #C0A080;
+            color: white;
             border: none;
-            font-size: 1rem;
+            padding: 12px 30px;
+            border-radius: 50px;
             font-weight: 600;
-            color: #8B7355;
             cursor: pointer;
             transition: all 0.3s;
-            border-bottom: 3px solid transparent;
+            box-shadow: 0 4px 10px rgba(192, 160, 128, 0.3);
         }
         
-        .admin-tab.active {
-            color: #C0A080;
-            border-bottom: 3px solid #C0A080;
+        .rsvp-modal-btn:hover {
+            background: #A88C6C;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(192, 160, 128, 0.4);
         }
         
-        .admin-tab:hover {
-            color: #C0A080;
-        }
-        
-        .admin-data {
-            max-height: 400px;
-            overflow-y: auto;
-            padding: 10px;
-        }
-        
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
+        /* RSVP Animation */
+        .rsvp-animation {
+            position: relative;
+            height: 100px;
             margin-bottom: 20px;
         }
         
-        .data-table th {
-            background: #C0A080;
-            color: white;
-            padding: 12px 15px;
-            text-align: left;
-            font-weight: 600;
+        .rsvp-flower {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, #ffb6c1, #ff69b4);
+            border-radius: 50%;
+            opacity: 0;
+            animation: flowerBloom 2s forwards;
         }
         
-        .data-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #E5E5E5;
+        .rsvp-flower-1 {
+            top: 10px;
+            left: 20%;
+            animation-delay: 0.2s;
         }
         
-        .data-table tr:hover {
-            background: rgba(192, 160, 128, 0.1);
+        .rsvp-flower-2 {
+            top: 30px;
+            right: 20%;
+            animation-delay: 0.4s;
         }
         
-        .wish-item, .rsvp-item {
-            border-bottom: 1px solid #E5E5E5;
-            padding: 15px 0;
+        .rsvp-flower-3 {
+            bottom: 10px;
+            left: 30%;
+            animation-delay: 0.6s;
         }
         
-        .wish-actions, .rsvp-actions {
-            margin-top: 10px;
+        .rsvp-flower-4 {
+            bottom: 20px;
+            right: 30%;
+            animation-delay: 0.8s;
         }
         
-        .admin-btn {
-            padding: 8px 16px;
-            margin: 0 5px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
+        .rsvp-heart {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: #ff6b6b;
+            clip-path: polygon(50% 0%, 100% 35%, 82% 100%, 50% 75%, 18% 100%, 0% 35%);
+            opacity: 0;
+            animation: heartBeat 1s 1s forwards;
         }
         
-        .export-btn {
-            background: #4CAF50;
-            color: white;
+        @keyframes flowerBloom {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
         
-        .export-btn:hover {
-            background: #45a049;
-        }
-        
-        .delete-btn {
-            background: #f44336;
-            color: white;
-        }
-        
-        .delete-btn:hover {
-            background: #d32f2f;
-        }
-        
-        .close-admin {
-            background: #C0A080;
-            color: white;
-            padding: 12px 25px;
-            margin-top: 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .close-admin:hover {
-            background: #A88C6C;
-        }
-        
-        .response-yes {
-            color: #4CAF50;
-            font-weight: 600;
-        }
-        
-        .response-no {
-            color: #f44336;
-            font-weight: 600;
-        }
-        
-        .empty-state {
-            text-align: center;
-            padding: 40px 20px;
-            color: #8B7355;
-        }
-        
-        .empty-state i {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            opacity: 0.5;
+        @keyframes heartBeat {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
         }
     </style>
 </head>
@@ -765,7 +705,7 @@
                 <a href="#gallery" class="nav-link">Galereya</a>
                 <a href="#location" class="nav-link">Manzil</a>
                 <a href="#wishes" class="nav-link">Tabriklar</a>
-                <a href="#" class="nav-link" id="adminNavLink">Admin</a>
+                <a href="admin.html" class="nav-link" id="adminNavLink">Admin</a>
             </div>
             <button id="mobile-menu-button" class="md:hidden focus:outline-none">
                 <i class="fas fa-bars text-2xl"></i>
@@ -780,7 +720,7 @@
              <a href="#gallery" class="block py-2 px-4 text-sm hover:bg-gray-200">Galereya</a>
              <a href="#location" class="block py-2 px-4 text-sm hover:bg-gray-200">Manzil</a>
              <a href="#wishes" class="block py-2 px-4 text-sm hover:bg-gray-200">Tabriklar</a>
-             <a href="#" class="block py-2 px-4 text-sm hover:bg-gray-200" id="adminMobileLink">Admin</a>
+             <a href="admin.html" class="block py-2 px-4 text-sm hover:bg-gray-200" id="adminMobileLink">Admin</a>
         </div>
     </header>
 
@@ -1101,28 +1041,26 @@
         </div>
     </footer>
 
-    <!-- Admin Modal -->
-    <div id="adminModal" class="admin-modal" style="display: none;">
-        <div class="admin-content">
-            <div class="admin-header">
-                <h2 class="admin-title">Admin Panel</h2>
-                <p class="admin-subtitle">To'y taklifnomasi ma'lumotlari boshqaruvi</p>
+    <!-- RSVP Response Modal -->
+    <div id="rsvpModal" class="rsvp-modal" style="display: none;">
+        <div class="rsvp-modal-content">
+            <div class="rsvp-modal-header">
+                <h2 class="rsvp-modal-title" id="rsvpModalTitle">Tabriklaymiz!</h2>
+                <span class="rsvp-modal-close" id="closeRsvpModal">&times;</span>
             </div>
-            
-            <div id="adminStats" class="stats-grid">
-                <!-- Statistikalar bu yerda ko'rsatiladi -->
+            <div class="rsvp-modal-body">
+                <div class="rsvp-animation">
+                    <div class="rsvp-flower rsvp-flower-1"></div>
+                    <div class="rsvp-flower rsvp-flower-2"></div>
+                    <div class="rsvp-flower rsvp-flower-3"></div>
+                    <div class="rsvp-flower rsvp-flower-4"></div>
+                    <div class="rsvp-heart"></div>
+                </div>
+                <p id="rsvpModalMessage" class="rsvp-modal-message"></p>
+                <div class="rsvp-modal-footer">
+                    <button class="rsvp-modal-btn" id="rsvpModalOk">OK</button>
+                </div>
             </div>
-            
-            <div class="admin-tabs">
-                <button class="admin-tab active" data-tab="rsvps">RSVP Ma'lumotlari</button>
-                <button class="admin-tab" data-tab="wishes">Barcha Tabriklar</button>
-            </div>
-            
-            <div id="adminData" class="admin-data">
-                <!-- Ma'lumotlar bu yerda ko'rsatiladi -->
-            </div>
-            
-            <button class="close-admin" id="closeAdmin">Yopish</button>
         </div>
     </div>
 
@@ -1142,10 +1080,6 @@
         // Firebase ni ishga tushirish
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
-        
-        // Admin holati
-        let isAdmin = false;
-        let currentTab = 'rsvps';
 
         document.addEventListener('DOMContentLoaded', function() {
             // AOS Initialization
@@ -1154,271 +1088,6 @@
                 once: true,
                 offset: 50,
             });
-
-            // Admin Panel Tugmasi
-            const adminNavLink = document.getElementById('adminNavLink');
-            const adminMobileLink = document.getElementById('adminMobileLink');
-            const adminModal = document.getElementById('adminModal');
-            const closeAdmin = document.getElementById('closeAdmin');
-            const adminTabs = document.querySelectorAll('.admin-tab');
-            
-            function openAdminModal() {
-                const password = prompt("Admin parolini kiriting:");
-                if (password === "22102025s") {
-                    isAdmin = true;
-                    adminModal.style.display = 'flex';
-                    loadAdminData();
-                } else {
-                    alert("Noto'g'ri parol!");
-                }
-            }
-            
-            adminNavLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                openAdminModal();
-            });
-            
-            adminMobileLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                openAdminModal();
-                // Mobile menuni yopish
-                document.getElementById('mobile-menu').classList.add('hidden');
-            });
-            
-            closeAdmin.addEventListener('click', function() {
-                adminModal.style.display = 'none';
-            });
-
-            // Admin tablarini boshqarish
-            adminTabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    // Barcha tablardan active klassini olib tashlash
-                    adminTabs.forEach(t => t.classList.remove('active'));
-                    // Bosilgan tabga active klassini qo'shish
-                    this.classList.add('active');
-                    
-                    currentTab = this.getAttribute('data-tab');
-                    loadAdminData();
-                });
-            });
-
-            // Excel formatida yuklab olish funksiyasi
-            function exportToExcel(data, filename) {
-                // CSV formatiga o'tkazish
-                let csvContent = "data:text/csv;charset=utf-8,";
-                
-                if (currentTab === 'rsvps') {
-                    csvContent += "Ism,Javob,Sana,IP Manzil\n";
-                    data.forEach(item => {
-                        const date = item.timestamp ? new Date(item.timestamp.toDate()).toLocaleDateString('uz-UZ') : 'Noma\'lum sana';
-                        const row = `${item.name},${item.response},${date},${item.ip || 'Noma\'lum'}`;
-                        csvContent += row + "\n";
-                    });
-                } else if (currentTab === 'wishes') {
-                    csvContent += "Ism,Tabrik,Sana\n";
-                    data.forEach(item => {
-                        const date = item.timestamp ? new Date(item.timestamp.toDate()).toLocaleDateString('uz-UZ') : 'Noma\'lum sana';
-                        const row = `${item.name},"${item.message}",${date}`;
-                        csvContent += row + "\n";
-                    });
-                }
-                
-                // CSV faylini yaratish va yuklab olish
-                const encodedUri = encodeURI(csvContent);
-                const link = document.createElement("a");
-                link.setAttribute("href", encodedUri);
-                link.setAttribute("download", `${filename}.csv`);
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            }
-
-            // Admin ma'lumotlarini yuklash
-            async function loadAdminData() {
-                if (!isAdmin) return;
-                
-                try {
-                    // RSVP statistikasi
-                    const rsvpSnapshot = await db.collection('rsvps').get();
-                    const rsvpData = rsvpSnapshot.docs.map(doc => ({id: doc.id, ...doc.data()}));
-                    
-                    const yesCount = rsvpData.filter(item => item.response === 'yes').length;
-                    const noCount = rsvpData.filter(item => item.response === 'no').length;
-                    const total = rsvpData.length;
-                    
-                    // Statistikani yangilash
-                    document.getElementById('adminStats').innerHTML = `
-                        <div class="stat-card">
-                            <div class="stat-number">${total}</div>
-                            <div class="stat-label">Jami RSVP</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">${yesCount}</div>
-                            <div class="stat-label">Qabul qilishlar</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">${noCount}</div>
-                            <div class="stat-label">Rad etishlar</div>
-                        </div>
-                    `;
-                    
-                    // Ma'lumotlarni tab bo'yicha ko'rsatish
-                    if (currentTab === 'rsvps') {
-                        let rsvpHTML = `
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                                <h3 style="margin: 0;">RSVP Ma'lumotlari</h3>
-                                <button class="admin-btn export-btn" id="exportRSVP">
-                                    <i class="fas fa-download"></i> Excel formatida yuklab olish
-                                </button>
-                            </div>
-                        `;
-                        
-                        if (rsvpData.length === 0) {
-                            rsvpHTML += `
-                                <div class="empty-state">
-                                    <i class="fas fa-inbox"></i>
-                                    <p>Hali RSVP ma'lumotlari yo'q</p>
-                                </div>
-                            `;
-                        } else {
-                            rsvpHTML += `
-                                <table class="data-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Ism</th>
-                                            <th>Javob</th>
-                                            <th>Sana</th>
-                                            <th>IP Manzil</th>
-                                            <th>Amallar</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                            `;
-                            
-                            rsvpData.forEach(rsvp => {
-                                const date = rsvp.timestamp ? new Date(rsvp.timestamp.toDate()).toLocaleDateString('uz-UZ') : 'Noma\'lum sana';
-                                const responseClass = rsvp.response === 'yes' ? 'response-yes' : 'response-no';
-                                const responseText = rsvp.response === 'yes' ? 'Qabul qiladi' : 'Rad etadi';
-                                
-                                rsvpHTML += `
-                                    <tr>
-                                        <td>${rsvp.name}</td>
-                                        <td class="${responseClass}">${responseText}</td>
-                                        <td>${date}</td>
-                                        <td>${rsvp.ip || 'Noma\'lum'}</td>
-                                        <td>
-                                            <button class="admin-btn delete-btn" onclick="deleteRSVP('${rsvp.id}')">
-                                                <i class="fas fa-trash"></i> O'chirish
-                                            </button>
-                                        </td>
-                                    </tr>
-                                `;
-                            });
-                            
-                            rsvpHTML += `
-                                    </tbody>
-                                </table>
-                            `;
-                        }
-                        
-                        document.getElementById('adminData').innerHTML = rsvpHTML;
-                        
-                        // Export tugmasini qayta bog'lash
-                        document.getElementById('exportRSVP').addEventListener('click', () => {
-                            exportToExcel(rsvpData, 'RSVP_Malumotlari');
-                        });
-                    } else if (currentTab === 'wishes') {
-                        // Barcha tabriklarni olish
-                        const wishesSnapshot = await db.collection('wishes').orderBy('timestamp', 'desc').get();
-                        const allWishes = wishesSnapshot.docs.map(doc => ({id: doc.id, ...doc.data()}));
-                        
-                        let wishesHTML = `
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                                <h3 style="margin: 0;">Barcha Tabriklar</h3>
-                                <button class="admin-btn export-btn" id="exportWishes">
-                                    <i class="fas fa-download"></i> Excel formatida yuklab olish
-                                </button>
-                            </div>
-                        `;
-                        
-                        if (allWishes.length === 0) {
-                            wishesHTML += `
-                                <div class="empty-state">
-                                    <i class="fas fa-inbox"></i>
-                                    <p>Hali tabrik yo'q</p>
-                                </div>
-                            `;
-                        } else {
-                            wishesHTML += `
-                                <table class="data-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Ism</th>
-                                            <th>Tabrik</th>
-                                            <th>Sana</th>
-                                            <th>Amallar</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                            `;
-                            
-                            allWishes.forEach(wish => {
-                                const date = wish.timestamp ? new Date(wish.timestamp.toDate()).toLocaleDateString('uz-UZ') : 'Noma\'lum sana';
-                                
-                                wishesHTML += `
-                                    <tr>
-                                        <td>${wish.name}</td>
-                                        <td>${wish.message}</td>
-                                        <td>${date}</td>
-                                        <td>
-                                            <button class="admin-btn delete-btn" onclick="deleteWish('${wish.id}')">
-                                                <i class="fas fa-trash"></i> O'chirish
-                                            </button>
-                                        </td>
-                                    </tr>
-                                `;
-                            });
-                            
-                            wishesHTML += `
-                                    </tbody>
-                                </table>
-                            `;
-                        }
-                        
-                        document.getElementById('adminData').innerHTML = wishesHTML;
-                        
-                        // Export tugmasini qayta bog'lash
-                        document.getElementById('exportWishes').addEventListener('click', () => {
-                            exportToExcel(allWishes, 'Tabriklar');
-                        });
-                    }
-                } catch (error) {
-                    console.error("Admin ma'lumotlarini yuklashda xatolik:", error);
-                }
-            }
-            
-            // Admin funksiyalari
-            window.deleteWish = async function(wishId) {
-                if (confirm("Bu tabrikni o'chirishni istaysizmi?")) {
-                    try {
-                        await db.collection('wishes').doc(wishId).delete();
-                        loadAdminData();
-                    } catch (error) {
-                        console.error("Tabrikni o'chirishda xatolik:", error);
-                    }
-                }
-            };
-            
-            window.deleteRSVP = async function(rsvpId) {
-                if (confirm("Bu RSVP ma'lumotini o'chirishni istaysizmi?")) {
-                    try {
-                        await db.collection('rsvps').doc(rsvpId).delete();
-                        loadAdminData();
-                    } catch (error) {
-                        console.error("RSVP ma'lumotini o'chirishda xatolik:", error);
-                    }
-                }
-            };
 
             // Taymer funksiyasi
             function updateCountdown() {
@@ -1668,9 +1337,15 @@
                     });
             }
 
+            // RSVP Response Modal
+            const rsvpModal = document.getElementById('rsvpModal');
+            const rsvpModalTitle = document.getElementById('rsvpModalTitle');
+            const rsvpModalMessage = document.getElementById('rsvpModalMessage');
+            const closeRsvpModal = document.getElementById('closeRsvpModal');
+            const rsvpModalOk = document.getElementById('rsvpModalOk');
+
             // Taklifnoma tugmalari
             const attendanceBtns = document.querySelectorAll('.attendance-btn');
-            const rsvpResponse = document.getElementById('rsvp-response');
             
             attendanceBtns.forEach(btn => {
                 btn.addEventListener('click', async function() {
@@ -1685,18 +1360,37 @@
                         
                         if (saved) {
                             if (response === 'yes') {
-                                rsvpResponse.textContent = `Rahmat, ${name}! Sizni oqshomda kutib qolamiz!🙂`;
-                                rsvpResponse.className = "mt-4 text-lg text-green-300";
+                                showRsvpResponse("Tabriklaymiz!", `Rahmat, ${name}! Sizni oqshomda kutib qolamiz!🙂`);
                             } else {
-                                rsvpResponse.textContent = `Rahmat, ${name}! Samimiy tilaklaringiz biz bilan!🙃`;
-                                rsvpResponse.className = "mt-4 text-lg text-yellow-300";
+                                showRsvpResponse("Tashakkur!", `Rahmat, ${name}! Samimiy tilaklaringiz biz bilan!🙃`);
                             }
                         } else {
-                            rsvpResponse.textContent = "Xatolik yuz berdi, iltimos keyinroq urinib ko'ring.";
-                            rsvpResponse.className = "mt-4 text-lg text-red-300";
+                            showRsvpResponse("Xatolik", "Xatolik yuz berdi, iltimos keyinroq urinib ko'ring.");
                         }
                     }
                 });
+            });
+
+            // RSVP javobini ko'rsatish
+            function showRsvpResponse(title, message) {
+                rsvpModalTitle.textContent = title;
+                rsvpModalMessage.textContent = message;
+                rsvpModal.style.display = 'flex';
+            }
+
+            // RSVP modalini yopish
+            closeRsvpModal.addEventListener('click', function() {
+                rsvpModal.style.display = 'none';
+            });
+
+            rsvpModalOk.addEventListener('click', function() {
+                rsvpModal.style.display = 'none';
+            });
+
+            window.addEventListener('click', function(event) {
+                if (event.target === rsvpModal) {
+                    rsvpModal.style.display = 'none';
+                }
             });
 
             // Mobile Menu Toggle
